@@ -4,7 +4,7 @@ exports = async function () {
     .db(context.environment.values.DB_NAME)
     .collection('secuencias');
 
-  const query = { coleccion: "postulantes" }
+  const query = { coleccion: "propuestas" }
   const update = { $inc: { valorSecuencia: 1 }}
 
   await collectionSecuencias.updateOne(query, update)

@@ -9,7 +9,7 @@ exports = async (postulanteId, empresaId, candidatoInfo = {}) => {
         query: {
           _id: postulanteId,
         },
-        collectionName: "postulantes",
+        collectionName: "propuestas",
       }
     );
 

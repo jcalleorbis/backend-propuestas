@@ -969,8 +969,8 @@
     },
     {
         "http_method": "POST",
-        "route": "/postulantes/crear",
-        "function_name": "crearPostulante",
+        "route": "/propuestas/crear",
+        "function_name": "crearPropuesta",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,

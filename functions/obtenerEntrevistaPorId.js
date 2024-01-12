@@ -39,7 +39,7 @@ exports = async function (request, response) {
         populateList: [
           /* {
             ref: "postulante",
-            collection: "postulantes",
+            collection: "propuestas",
             fieldsOptions: {
               invitacionEdicion: 0,
               historialCambios: 0,
@@ -123,7 +123,7 @@ const validate = async (request) => {
 
   const collectionName = entrevistaPendiente.empresa
     ? "postulante-empresa"
-    : "postulantes";
+    : "propuestas";
 
   let querySearchPostulante = {
     _id: entrevistaPendiente.postulante,

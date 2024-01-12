@@ -42,7 +42,7 @@ exports = async function (request, response) {
         populateList: [
           {
             ref: "postulante",
-            collection: "postulantes",
+            collection: "propuestas",
             fieldsOptions: {
               invitacionEdicion: 0,
               historialCambios: 0,

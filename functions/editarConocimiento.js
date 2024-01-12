@@ -106,7 +106,7 @@ const validate = async (request, collection) => {
 const updateManyPostulantes = async ({ query, value }) => {
   const collectionPostulante = context.functions.execute(
     "getCollectionInstance",
-    "postulantes"
+    "propuestas"
   );
   await collectionPostulante.updateMany(query, {
     $set: value

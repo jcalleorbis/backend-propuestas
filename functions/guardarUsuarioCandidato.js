@@ -46,9 +46,9 @@ const validate = async (request) => {
 
   if(!postulante.skills || postulante.skills?.length == 0) throw new Error("Debes registrar un skill como mínimo")
 
-  const postulanteValidado = context.functions.execute("validarPostulante", postulante)
+  const postulanteValidado = context.functions.execute("validarPropuesta", postulante)
 
-  const postulantesCollection = context.functions.execute("getCollectionInstance", "postulantes")
+  const postulantesCollection = context.functions.execute("getCollectionInstance", "propuestas")
 
   const queryBusqueda = {
     email: { $regex: email, $options: 'i' },
@@ -65,7 +65,7 @@ const validate = async (request) => {
     "obtenerDocumentoPorQuery", 
     {
       query: queryBusqueda,
-      collectionName: 'postulantes'
+      collectionName: 'propuestas'
     }
   )
 
@@ -158,7 +158,7 @@ const validate = async (request) => {
   documentoValido.sincronizadoCon = { // actualiza datos de sincronizacion
     identificador: postulanteExiste._id,
     email: email,
-    coleccion: 'postulantes'
+    coleccion: 'propuestas'
   }
   //if(!sincronizadoCon) { // si no está sincronizado con un postulante
   //}

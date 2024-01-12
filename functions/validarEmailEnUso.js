@@ -5,7 +5,7 @@ exports = async function ({ postulanteId, email }) {
       email: { $regex: email, "$options": 'i' },
       deleted: { $ne: true }
     },
-    collectionName: 'postulantes'
+    collectionName: 'propuestas'
   })
   return Boolean(existeMail)
 }

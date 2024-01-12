@@ -49,7 +49,7 @@ const validate = async (request) => {
       sincronizadoCon: {
         identificador: postulante._id,
         email: postulante.email,
-        coleccion: 'postulantes'
+        coleccion: 'propuestas'
       },
       "candidato.email": postulante.email,
       "candidato.skills": postulante.skills,

@@ -20,7 +20,7 @@ exports = async function(request, response/*,body*/){
     const collectionPostulantes = context.services
       .get('mongodb-atlas')
       .db(context.environment.values.DB_NAME)
-      .collection('postulantes');
+      .collection('propuestas');
     for (let i = 0; i < dataJSON.length; i++) {
         const element = dataJSON[i];
         let postulanteExiste = await context.functions.execute('obtenerPostulantePorEmail', `${element.email}`);
@@ -112,7 +112,7 @@ exports = async function(request, response/*,body*/){
         element.idiomas = idiomas;
 
         // Se añade código incrementable al postulante
-        element.codigo = await context.functions.execute("obtenerSiguienteCodigoPostulante")
+        element.codigo = await context.functions.execute("obtenerSiguienteCodigoPropuesta")
         
         let { insertedId } = await collectionPostulantes.insertOne(element);
         // Se valida el resultado

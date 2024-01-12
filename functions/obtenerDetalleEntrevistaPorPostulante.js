@@ -26,7 +26,7 @@ exports = async function (request, response) {
     const isEntrevistaEmpresa = Boolean(entrevistaPendiente.empresa) && !esSuperAdmin;
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
-      isEntrevistaEmpresa ? "postulante-empresa" : "postulantes"
+      isEntrevistaEmpresa ? "postulante-empresa" : "propuestas"
     );
     const queryPostulante = !isEntrevistaEmpresa
       ? { _id: entrevistaPendiente?.postulante } // busca en la colección postulantes

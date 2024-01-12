@@ -66,7 +66,7 @@ const validate = (request) => {
 const deleteManySkillsInPostulantes = async ({ query, value }) => {
   const collectionPostulante = context.functions.execute(
     "getCollectionInstance",
-    "postulantes"
+    "propuestas"
   );
   await collectionPostulante.updateMany(query, {
     $pull: value

@@ -10,7 +10,7 @@ exports = async function (request, response) {
 
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
-      "postulantes"
+      "propuestas"
     );
     const collectionUsuarios = context.functions.execute(
       "getCollectionInstance",

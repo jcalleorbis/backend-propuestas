@@ -10,7 +10,7 @@ exports = async function(request, response){
     const collectionPostulantes = context.services
       .get('mongodb-atlas')
       .db(context.environment.values.DB_NAME)
-      .collection('postulantes');
+      .collection('propuestas');
     
     const queryUpdate = { _id: BSON.ObjectId(data.postulanteId) };
     const update = {

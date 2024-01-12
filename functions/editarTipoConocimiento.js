@@ -98,7 +98,7 @@ const updateManyConocimientos = async (tipoId, tipoUpdated) => {
   );
   const collectionPostulantes = context.functions.execute(
     "getCollectionInstance",
-    "postulantes"
+    "propuestas"
   );
 
   await collectionConocimientos.updateMany(

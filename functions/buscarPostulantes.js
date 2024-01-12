@@ -21,7 +21,7 @@ exports = async function (request, response) {
     );
 
     // Si se tiene filtro de empresa se filtra por postulante-empresa, sino por postulantes
-    const collectionName = queryEmpresa ? "postulante-empresa" : "postulantes"; 
+    const collectionName = queryEmpresa ? "postulante-empresa" : "propuestas"; 
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
       collectionName

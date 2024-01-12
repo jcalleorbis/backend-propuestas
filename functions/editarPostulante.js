@@ -20,7 +20,7 @@ exports = async function (request, response) {
       throw new Error("No se esta enviando el body en el request");
 
     const parseBody = await context.functions.execute(
-      "validarPostulante",
+      "validarPropuesta",
       JSON.parse(body.text())
     );
 
@@ -30,7 +30,7 @@ exports = async function (request, response) {
 
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
-      "postulantes"
+      "propuestas"
     );
 
     const postulante = await collectionPostulantes.findOne(queryUpdate);
@@ -95,7 +95,7 @@ exports = async function (request, response) {
       );
       const collectionPostulantesOriginal = context.functions.execute(
         "getCollectionInstance",
-        "postulantes"
+        "propuestas"
       );
       await collectionPostulantesOriginal.updateOne(
         {
@@ -133,7 +133,7 @@ exports = async function (request, response) {
 
     context.functions.execute("handlerResponse", response, {
       ...postulanteAct,
-      collectionName: "postulantes",
+      collectionName: "propuestas",
     });
   } catch (err) {
     context.functions.execute(

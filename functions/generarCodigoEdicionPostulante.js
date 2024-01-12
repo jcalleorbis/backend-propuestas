@@ -14,7 +14,7 @@ const validate = ({ postulanteId, empresaId }) => {
 
   return { 
     querySearch,
-    collectionName: empresaId ? "postulante-empresa" : "postulantes",
+    collectionName: empresaId ? "postulante-empresa" : "propuestas",
   };
 };
 

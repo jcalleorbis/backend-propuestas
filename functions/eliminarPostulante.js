@@ -81,7 +81,7 @@ const validate = ({ postulanteId, empresaId }) => {
   
   return {
     queryDelete,
-    collectionName: empresaId ? "postulante-empresa" : "postulantes",
+    collectionName: empresaId ? "postulante-empresa" : "propuestas",
     hasEmpresa: Boolean(empresaId),
     postulanteId,
   };

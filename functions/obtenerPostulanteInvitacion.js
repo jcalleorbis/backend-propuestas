@@ -33,7 +33,7 @@ exports = async (codigoInvitacion) => {
   
   const collectionPostulantes = context.functions.execute(
     "getCollectionInstance",
-    "postulantes"
+    "propuestas"
   );
   const collectionPostulantesEmpresa = context.functions.execute(
     "getCollectionInstance",

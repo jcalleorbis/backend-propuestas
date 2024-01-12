@@ -20,7 +20,7 @@ exports = async function (email) {
           estatus: 0,
           fechaRegistro: 0
         },
-        collectionName: 'postulantes'
+        collectionName: 'propuestas'
       }
     );
       

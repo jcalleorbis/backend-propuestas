@@ -34,13 +34,13 @@ exports = async (request, response) => {
 
     const data = validateBody({ ...JSON.parse(body.text()) });
 
-    const collectionName = data.empresa ? 'postulante-empresa' : 'postulantes'
+    const collectionName = data.empresa ? 'postulante-empresa' : 'propuestas'
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
       collectionName
     );
 
-    const dataFormated = await context.functions.execute('validarPostulante', JSON.parse(body.text()), true);
+    const dataFormated = await context.functions.execute('validarPropuesta', JSON.parse(body.text()), true);
 
     const postulante = await context.functions.execute(
       "obtenerPostulanteInvitacion",
@@ -136,7 +136,7 @@ exports = async (request, response) => {
     // Pushear última actualización en el resto de colecciones
     const collectionPostulantesOriginal = context.functions.execute(
       "getCollectionInstance",
-      "postulantes"
+      "propuestas"
     );
     const collectionPostulantesEmpresa = context.functions.execute(
       "getCollectionInstance",

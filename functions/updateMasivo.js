@@ -6,7 +6,7 @@ exports = async function(request, response){
     const postulantes = context.services
       .get('mongodb-atlas')
       .db(context.environment.values.DB_NAME)
-      .collection('postulantes');
+      .collection('propuestas');
     const tipos = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
@@ -552,7 +552,7 @@ exports = async function(request, response){
     const postulantesUpdated = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
-        .collection('postulantes');
+        .collection('propuestas');
         context.functions.execute('handlerResponse', response, postulantesUpdated);
   } catch(err) {
     context.functions.execute('handlerResponse', response, null, 400, false, err.message);

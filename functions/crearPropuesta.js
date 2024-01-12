@@ -17,37 +17,37 @@ exports = async function (request, response) {
       throw new Error("No se esta enviando el body en el request");
 
     const parseBody = await context.functions.execute(
-      "validarPostulante",
+      "validarPropuesta",
       JSON.parse(body.text())
     );
     
-    const collectionPostulantes = context.functions.execute(
+    const collectionPropuestas = context.functions.execute(
       "getCollectionInstance",
-      "postulantes"
+      "propuestas"
     );
 
     // Se añade código incrementable al postulante
-    const dtoPostulante = {
+    const dtoPropuesta = {
       ...parseBody,
       codigo: await context.functions.execute(
-        "obtenerSiguienteCodigoPostulante"
+        "obtenerSiguienteCodigoPropuesta"
       ),
     };
 
-    const { insertedId } = await collectionPostulantes.insertOne(dtoPostulante);
+    const { insertedId } = await collectionPropuestas.insertOne(dtoPropuesta);
 
     // Se valida el resultado
     if (!insertedId) {
-      throw new Error("No se encontró postulante a agregar");
+      throw new Error("No se encontró propuesta a agregar");
     }
 
-    const postulante = await context.functions.execute(
+    const propuesta = await context.functions.execute(
       "findPostulantePorId",
       `${insertedId}`
     );
 
 
-    context.functions.execute("handlerResponse", response, postulante);
+    context.functions.execute("handlerResponse", response, propuesta);
   } catch (err) {
     context.functions.execute(
       "handlerResponse",

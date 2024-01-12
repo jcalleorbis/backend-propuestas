@@ -379,7 +379,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "crearPostulante",
+        "name": "crearPropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -710,7 +710,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "obtenerSiguienteCodigoPostulante",
+        "name": "obtenerSiguienteCodigoPropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -800,7 +800,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "validarPostulante",
+        "name": "validarPropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true

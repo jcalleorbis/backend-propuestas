@@ -40,14 +40,14 @@ exports = async function(request, response) {
 
     const collectionPostulantesOriginal = context.functions.execute(
       "getCollectionInstance",
-      "postulantes"
+      "propuestas"
     );
     const collectionPostulantesEmpresa = context.functions.execute(
       "getCollectionInstance",
       "postulante-empresa"
     );
     
-    // Se actualizan los datos del postulante en las colecciones "postulantes", "postulante-empresa" y "usuario.candidato"
+    // Se actualizan los datos del postulante en las colecciones "propuestas", "postulante-empresa" y "usuario.candidato"
     await collectionPostulantesEmpresa.updateMany({ postulante: queryUpdate._id || queryUpdate.postulante }, update, options);
     await collectionPostulantesOriginal.updateOne({ _id: queryUpdate._id || queryUpdate.postulante }, update, options);
     await collectionUsuarios.updateOne({ "sincronizadoCon.identificador": BSON.ObjectId(postulanteId), deleted: { $ne: true }  }, {
@@ -81,7 +81,7 @@ const validateQueries = ({postulanteId, folder, removerActual = false, empresaId
   if (!postulanteId) context.functions.execute('handleError', "validation_error", "El ID es requerido", 400);
   if (!folder) context.functions.execute('handleError', "validation_error", "Se debe especificar la carpeta de destino", 400);
 
-  const collectionName = empresaId ? 'postulante-empresa' : 'postulantes'
+  const collectionName = empresaId ? 'postulante-empresa' : 'propuestas'
   
   let queryUpdate = {
     _id: BSON.ObjectId(postulanteId)
