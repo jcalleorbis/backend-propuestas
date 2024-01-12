@@ -1,0 +1,25 @@
+{
+    "name": "mail_config",
+    "value": {
+        "base_url_invite": "http://localhost:5173/candidatos/editar/",
+        "base_url_recovery": "http://localhost:5173/auth/restablecer-contrasena",
+        "noreply_account": {
+            "host": "mailexchange.ts.klgtechnology.com",
+            "password": "BZiGQa@OhMKM0Q^**9(Je62y",
+            "port": 587,
+            "secure": true,
+            "ssl": true,
+            "type": "login",
+            "user": "noreply@orbisdata.pe"
+        },
+        "tech_account": {
+            "host": "smtp.gmail.com",
+            "port": 465,
+            "secure": true,
+            "type": "OAuth2",
+            "user": "tecnologiaorbiosperu@gmail.com"
+        },
+        "user_receiver": "luismelgarejoalarcon@gmail.com"
+    },
+    "from_secret": false
+}

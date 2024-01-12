@@ -1,0 +1,7 @@
+{
+    "name": "gcp_config",
+    "value": {
+        "bucket": "recapp-dev"
+    },
+    "from_secret": false
+}

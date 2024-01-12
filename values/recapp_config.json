@@ -1,0 +1,20 @@
+{
+    "name": "recapp_config",
+    "value": {
+        "code_verification_length": 6,
+        "estado_id_autoregistrado": "63dd3a315e965ffd9adb9c23",
+        "estado_id_por_contactar": "63a206ef6f1f65e0e64a255a",
+        "exp_token_restablecimiento": 24,
+        "exp_token_verificacion": 3,
+        "folder_companies_group": "empresas",
+        "folder_users_group": "usuarios",
+        "nombre_app": "RecPeople",
+        "perfil_admin_id": "63cfd8cf280170a6cc4bd81e",
+        "tipo_auth_default": "recapp",
+        "tipo_auth_google": "google",
+        "tipo_registro_candidato": "candidato",
+        "tipo_registro_default": "pre-candidato",
+        "tipo_registro_empresa": "empresa"
+    },
+    "from_secret": false
+}
