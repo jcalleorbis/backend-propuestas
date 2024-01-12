@@ -694,8 +694,8 @@
     },
     {
         "http_method": "PUT",
-        "route": "/postulantes/edit",
-        "function_name": "editarPostulante",
+        "route": "/propuestas/edit",
+        "function_name": "editarPropuesta",
         "validation_method": "NO_VALIDATION",
         "respond_result": true,
         "fetch_custom_user_data": false,

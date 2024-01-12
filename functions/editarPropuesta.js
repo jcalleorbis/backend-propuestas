@@ -26,37 +26,37 @@ exports = async function (request, response) {
 
     const data = await validate({ ...query }, parseBody);
 
-    let queryUpdate = { _id: BSON.ObjectId(data.postulanteId) };
+    let queryUpdate = { _id: BSON.ObjectId(data.propuestaId) };
 
-    const collectionPostulantes = context.functions.execute(
+    const collectionPropuestas = context.functions.execute(
       "getCollectionInstance",
       "propuestas"
     );
 
-    const postulante = await collectionPostulantes.findOne(queryUpdate);
+    const propuesta = await collectionPropuestas.findOne(queryUpdate);
     
-    if(!postulante) throw new Error("El postulante no existe")
+    if(!propuesta) throw new Error("La propuesta no existe")
 
-    if (postulante?.deleted) { // si el postulante está eliminado
+    if (propuesta?.deleted) { // si la propuesta está eliminada
       throw new Error(
-        `El postulante ${postulante.email} no se pudo actualizar ya que se encuentra en estatus: 'eliminado'. Si desea reinsertarlo comuniquese con el administrador del sistema y proporcionele este ID: ${postulante._id}`
+        `La propuesta ${propuesta.email} no se pudo actualizar ya que se encuentra en estatus: 'eliminado'. Si desea reinsertarlo comuniquese con el administrador del sistema y proporcionele este ID: ${propuesta._id}`
       );
     }
 
     // Historial de estatus
-    if (parseBody?.estatus && postulante?.estatus) {
-      if (parseBody.estatus.estado != postulante.estatus.estado) {
-        if (postulante.historialEstatus) {
+    if (parseBody?.estatus && propuesta?.estatus) {
+      if (parseBody.estatus.estado != propuesta.estatus.estado) {
+        if (propuesta.historialEstatus) {
           parseBody.historialEstatus = [];
-          parseBody.historialEstatus.push(...postulante.historialEstatus, {
-            estatus: postulante.estatus,
+          parseBody.historialEstatus.push(...propuesta.historialEstatus, {
+            estatus: propuesta.estatus,
             fechaFinalizacion: `${now().format()}`,
           });
           parseBody.estatus.comentarios = [];
         } else {
           parseBody.historialEstatus = [];
           parseBody.historialEstatus.push({
-            estatus: postulante.estatus,
+            estatus: propuesta.estatus,
             fechaFinalizacion: `${now().format()}`,
           });
           parseBody.estatus.comentarios = [];
@@ -65,7 +65,7 @@ exports = async function (request, response) {
     }
 
     // Historial de cambios
-    const { fechaActualizacion, historialCambios } = getHistorialCambios(headers, postulante, parseBody)
+    const { fechaActualizacion, historialCambios } = getHistorialCambios(headers, propuesta, parseBody)
 
     parseBody.historialCambios = historialCambios;
     parseBody.fechaModificacion = fechaActualizacion;
@@ -79,13 +79,13 @@ exports = async function (request, response) {
 
     // se realiza una actualización completa en la empresa/administrador que añade los datos
     const { matchedCount, modifiedCount } =
-      await collectionPostulantes.updateOne(queryUpdate, update, options);
+      await collectionPropuestas.updateOne(queryUpdate, update, options);
 
     if (parseBody.empresa) {
       // Actualiza el candidato si está registrado en otras empresas, menos la actual
-      await collectionPostulantes.updateMany(
+      await collectionPropuestas.updateMany(
         {
-          postulante: queryUpdate.postulante,
+          propuesta: queryUpdate.propuesta,
           empresa: { $ne: queryUpdate.empresa },
         },
         {
@@ -93,13 +93,13 @@ exports = async function (request, response) {
         },
         options
       );
-      const collectionPostulantesOriginal = context.functions.execute(
+      const collectionPropuestasOriginal = context.functions.execute(
         "getCollectionInstance",
         "propuestas"
       );
-      await collectionPostulantesOriginal.updateOne(
+      await collectionPropuestasOriginal.updateOne(
         {
-          _id: queryUpdate.postulante,
+          _id: queryUpdate.propuesta,
         },
         {
           $set: formatearDataActualizacion(parseBody),
@@ -126,13 +126,13 @@ exports = async function (request, response) {
 
     // Se valida el resultado
     if (!matchedCount && !modifiedCount) {
-      throw new Error("No se encontró postulante a editar");
+      throw new Error("No se encontró propuesta a editar");
     }
 
-    const postulanteAct = await collectionPostulantes.findOne(queryUpdate);
+    const propuestaAct = await collectionPropuestas.findOne(queryUpdate);
 
     context.functions.execute("handlerResponse", response, {
-      ...postulanteAct,
+      ...propuestaAct,
       collectionName: "propuestas",
     });
   } catch (err) {
@@ -147,15 +147,12 @@ exports = async function (request, response) {
   }
 };
 
-const validate = async ({ postulanteId }, postulanteInfo) => {
-  if (!postulanteId) throw new Error("Debe añadir el postulanteId");
-  // Validar Email en uso
-  const idOnPostulantes = BSON.ObjectId(postulanteId)
-  const email = postulanteInfo.email
-  return { postulanteId };
+const validate = async ({ propuestaId }, propuestaInfo) => {
+  if (!propuestaId) throw new Error("Debe añadir el propuestaId");
+  return { propuestaId };
 };
 
-const getHistorialCambios = (headers, postulante) => {
+const getHistorialCambios = (headers, propuesta) => {
   const now = require("moment");
   const userSession = headers?.[context.values.get("jwt_config").headerUser];
   const fechaActualizacion = now().toDate();
@@ -175,8 +172,8 @@ const getHistorialCambios = (headers, postulante) => {
     }
   }
 
-  const historialCambios = postulante?.historialCambios
-    ? [...postulante.historialCambios, nuevaEdicion]
+  const historialCambios = propuesta?.historialCambios
+    ? [...propuesta.historialCambios, nuevaEdicion]
     : [nuevaEdicion];
 
   return {
@@ -185,26 +182,26 @@ const getHistorialCambios = (headers, postulante) => {
   }
 }
 
-const formatearDataActualizacion = (postulante) => {
+const formatearDataActualizacion = (propuesta) => {
   const now = require("moment");
-  const postulanteClone = JSON.parse(JSON.stringify(postulante));
+  const propuestaClone = JSON.parse(JSON.stringify(propuesta));
 
   // eliminar propiedades que no se deben guardar en las otras empresas
-  delete postulanteClone?.historialEstatus;
-  delete postulanteClone?.historialCambios;
-  delete postulanteClone?.invitacionEdicion;
-  delete postulanteClone?.invitacionesHistorial;
-  delete postulanteClone?.codigo;
-  delete postulanteClone?.skills;
-  delete postulanteClone?.idiomas;
-  delete postulanteClone?.estatus;
-  delete postulanteClone?.fechaRegistro;
-  delete postulanteClone?.empresa;
-  delete postulanteClone?.postulante;
-  delete postulanteClone?.preferenciaMoneda?.comentarios;
-  delete postulanteClone?.creadorId;
+  delete propuestaClone?.historialEstatus;
+  delete propuestaClone?.historialCambios;
+  delete propuestaClone?.invitacionEdicion;
+  delete propuestaClone?.invitacionesHistorial;
+  delete propuestaClone?.codigo;
+  delete propuestaClone?.skills;
+  delete propuestaClone?.idiomas;
+  delete propuestaClone?.estatus;
+  delete propuestaClone?.fechaRegistro;
+  delete propuestaClone?.empresa;
+  delete propuestaClone?.propuesta;
+  delete propuestaClone?.preferenciaMoneda?.comentarios;
+  delete propuestaClone?.creadorId;
 
-  postulanteClone.fechaModificacion = now().toDate();
+  propuestaClone.fechaModificacion = now().toDate();
 
-  return postulanteClone;
+  return propuestaClone;
 };
