@@ -11,15 +11,15 @@ exports = async function (request, response) {
       response
     );
 
-    const collectionTConocimientos = context.functions.execute(
+    const collectionAConceptos = context.functions.execute(
       "getCollectionInstance",
       "agrupaciones-concepto"
     );
 
-    const payload = await validate(request, collectionTConocimientos);
+    const payload = await validate(request, collectionAConceptos);
 
     const { matchedCount, modifiedCount } =
-      await collectionTConocimientos.updateOne(
+      await collectionAConceptos.updateOne(
         { _id: payload.documentId },
         {
           $set: payload.document,
@@ -29,18 +29,18 @@ exports = async function (request, response) {
     if (!matchedCount && !modifiedCount)
       throw new Error("No se encontró el tipo de conocimiento a editar");
 
-    const tConocimientoDocument = await collectionTConocimientos.findOne({
+    const aConceptoDocument = await collectionAConceptos.findOne({
       _id: payload.documentId,
     });
 
     if (payload.permitSync) {
-      await updateManyConocimientos(payload.documentId, tConocimientoDocument);
+      await updateManyConceptos(payload.documentId, aConceptoDocument);
     }
 
     context.functions.execute(
       "handlerResponse",
       response,
-      tConocimientoDocument
+      aConceptoDocument
     );
   } catch (err) {
     context.functions.execute(
@@ -91,8 +91,8 @@ const validate = async (request, collection) => {
   };
 };
 
-const updateManyConocimientos = async (tipoId, tipoUpdated) => {
-  const collectionConocimientos = context.functions.execute(
+const updateManyConceptos = async (tipoId, tipoUpdated) => {
+  const collectionConceptos = context.functions.execute(
     "getCollectionInstance",
     "conocimientos"
   );
@@ -101,7 +101,7 @@ const updateManyConocimientos = async (tipoId, tipoUpdated) => {
     "propuestas"
   );
 
-  await collectionConocimientos.updateMany(
+  await collectionConceptos.updateMany(
     { "tipo._id": tipoId },
     {
       $set: {
