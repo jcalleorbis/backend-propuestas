@@ -11,15 +11,15 @@ exports = async function (request, response) {
       response
     );
 
-    const collectionConocimiento = context.functions.execute(
+    const collectionConcepto = context.functions.execute(
       "getCollectionInstance",
       "conceptos"
     );
 
-    const payload = await validate(request, collectionConocimiento);
+    const payload = await validate(request, collectionConcepto);
 
     const { matchedCount, modifiedCount } =
-      await collectionConocimiento.updateOne(
+      await collectionConcepto.updateOne(
         { _id: payload.documentId },
         {
           $set: payload.document
@@ -27,26 +27,26 @@ exports = async function (request, response) {
       );
 
     if (!matchedCount && !modifiedCount)
-      throw new Error("No se encontró el tipo de conocimiento a editar");
+      throw new Error("No se encontró el concepto a editar");
 
-    const conocimientoDocument = await collectionConocimiento.findOne({
+    const conceptoDocument = await collectionConcepto.findOne({
       _id: payload.documentId,
     });
 
     if(payload.permitSync) {
       await updateManyPostulantes({
         query: { 'skills.conocimiento._id': payload.documentId },
-        value: { 'skills.$.conocimiento': conocimientoDocument }
+        value: { 'skills.$.conocimiento': conceptoDocument }
       })
     }
 
     context.functions.execute(
       "handlerResponse",
       response,
-      conocimientoDocument
+      conceptoDocument
     );
 
-    context.functions.execute("handlerResponse", response, conocimientoDocument);
+    context.functions.execute("handlerResponse", response, conceptoDocument);
   } catch (err) {
     context.functions.execute(
       "handlerResponse",
@@ -68,7 +68,7 @@ const validate = async (request, collection) => {
   if (!body.nombre) throw new Error("El nombre es requerido");
   if (!body.color) throw new Error("El color es requerido");
   if (!body.tipo || typeof body.tipo != "object")
-    throw new Error("El Tipo de conocimiento es requerido");
+    throw new Error("La Agrupación de concepto es requerida");
 
   body.tipo = {
     ...body.tipo,

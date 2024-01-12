@@ -829,7 +829,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "editarConocimiento",
+        "name": "editarConcepto",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
