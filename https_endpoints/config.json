@@ -573,8 +573,8 @@
     },
     {
         "http_method": "GET",
-        "route": "/postulantes/search",
-        "function_name": "buscarPostulantes",
+        "route": "/propuestas/search",
+        "function_name": "buscarPropuestas",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,
