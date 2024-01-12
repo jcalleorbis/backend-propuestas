@@ -102,7 +102,7 @@ const validate = async (request) => {
         query: {
           _id: BSON.ObjectId(recappConfig.estado_id_autoregistrado) 
         },
-        collectionName: 'estados-postulante'
+        collectionName: 'estados-propuesta'
       }
     )
     const { insertedId } = await postulantesCollection.insertOne({

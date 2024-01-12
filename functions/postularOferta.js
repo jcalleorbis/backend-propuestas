@@ -206,7 +206,7 @@ const validate = async (request) => {
     "obtenerDocumentoPorQuery", 
     {
       query: { _id: BSON.ObjectId(recappConfig.estado_id_por_contactar)  },
-      collectionName: "estados-postulante"
+      collectionName: "estados-propuesta"
     }
   )
 

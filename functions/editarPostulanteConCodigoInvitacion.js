@@ -18,7 +18,7 @@ const validarEstado = async (estadoId) => {
   const estadosCollection = context.services
       .get("mongodb-atlas")
       .db(context.environment.values.DB_NAME)
-      .collection("estados-postulante");
+      .collection("estados-propuesta");
   
   const estado = await estadosCollection.findOne({ _id: BSON.ObjectId(estadoId) })
   if(!estado) return false
