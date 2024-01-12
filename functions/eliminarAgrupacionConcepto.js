@@ -13,20 +13,20 @@ exports = async function (request, response) {
 
     const { tipoConocimientoId, document } = await validate(request);
 
-    const collectionTiposConocimiento = context.functions.execute(
+    const collectionAgrupacionesConceptos = context.functions.execute(
       "getCollectionInstance",
       "agrupaciones-concepto"
     );
 
     const { matchedCount, modifiedCount } =
-      await collectionTiposConocimiento.updateOne(
+      await collectionAgrupacionesConceptos.updateOne(
         { _id: tipoConocimientoId },
         { $set: document }
       );
 
     if (!matchedCount && modifiedCount == 0)
       throw new Error(
-        "No se pudo eliminar el tipo de conocimiento seleccionado"
+        "No se pudo eliminar la agrupación de concepto seleccionada"
       );
 
     context.functions.execute("handlerResponse", response, {
@@ -52,12 +52,12 @@ const validate = async (request) => {
   if (!params.tipoConocimientoId)
     throw new Error("El id del documento es requerido");
 
-  const collectionConocimientos = context.functions.execute(
+  const collectionConceptos = context.functions.execute(
     "getCollectionInstance",
     "conocimientos"
   );
 
-  const tiposEnUso = await collectionConocimientos
+  const tiposEnUso = await collectionConceptos
     .find({
       "tipo._id": BSON.ObjectId(params.tipoConocimientoId),
       deleted: { $ne: true }
@@ -67,7 +67,7 @@ const validate = async (request) => {
   if (tiposEnUso?.length > 0) {
     throw new Error({
       errorMessage:
-        'El Tipo de conocimiento se encuentra actualmente en uso.<br/>Si desea eliminar este elemento dirijase a la pestaña de "Conocimientos" y remueva esta categoria de los siguientes conocimientos:',
+        'La agrupación de concepto se encuentra actualmente en uso.<br/>Si desea eliminar este elemento dirijase a la pestaña de "Conceptos" y remueva esta categoria de los siguientes conceptos:',
       errorData: tiposEnUso,
     });
   }

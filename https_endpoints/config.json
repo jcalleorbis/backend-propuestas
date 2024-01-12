@@ -452,8 +452,8 @@
     },
     {
         "http_method": "DELETE",
-        "route": "/mantenimiento/tiposConocimiento",
-        "function_name": "eliminarTipoConocimiento",
+        "route": "/mantenimiento/agrupacionesConcepto",
+        "function_name": "eliminarAgrupacionConcepto",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,
