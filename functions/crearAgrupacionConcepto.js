@@ -11,27 +11,27 @@ exports = async function (request, response) {
       response
     );
 
-    const collectionTConocimientos = context.functions.execute(
+    const collectionAConceptos = context.functions.execute(
       "getCollectionInstance",
       "agrupaciones-concepto"
     );
-    const payload = await validate(request, collectionTConocimientos);
+    const payload = await validate(request, collectionAConceptos);
 
-    const { insertedId } = await collectionTConocimientos.insertOne(payload);
+    const { insertedId } = await collectionAConceptos.insertOne(payload);
 
     if (!insertedId)
       throw new Error(
-        "Ocurrió un error al intentar guardar el conocimiento en la BD."
+        "Ocurrió un error al intentar guardar la agrupación de concepto en la BD."
       );
 
-    const conocimientoDocument = await collectionTConocimientos.findOne({
+    const conceptoDocument = await collectionAConceptos.findOne({
       _id: insertedId,
     });
 
     context.functions.execute(
       "handlerResponse",
       response,
-      conocimientoDocument
+      conceptoDocument
     );
   } catch (err) {
     context.functions.execute(

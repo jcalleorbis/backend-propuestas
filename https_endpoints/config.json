@@ -1,8 +1,8 @@
 [
     {
         "http_method": "POST",
-        "route": "/mantenimiento/tiposConocimiento",
-        "function_name": "crearTipoConocimiento",
+        "route": "/mantenimiento/agrupacionesConcepto",
+        "function_name": "crearAgrupacionConcepto",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,
