@@ -331,8 +331,8 @@
     },
     {
         "http_method": "GET",
-        "route": "/mantenimiento/tiposConocimiento",
-        "function_name": "obtenerTiposConocimiento",
+        "route": "/mantenimiento/agrupacionesConcepto",
+        "function_name": "obtenerAgrupacionesConcepto",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,

@@ -13,7 +13,7 @@ exports = async function (request, response) {
 
     const collectionTConocimientos = context.functions.execute(
       "getCollectionInstance",
-      "tipos-conocimiento"
+      "agrupaciones-concepto"
     );
 
     const payload = await validate(request, collectionTConocimientos);

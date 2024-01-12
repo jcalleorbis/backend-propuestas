@@ -10,7 +10,7 @@ exports = async function(request, response){
     const tipos = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
-        .collection('tipos-conocimiento');
+        .collection('agrupaciones-concepto');
     const conocimientos = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
