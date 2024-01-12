@@ -15,7 +15,7 @@ exports = async function (request, response) {
 
     const collectionConocimientos = context.functions.execute(
       "getCollectionInstance",
-      "conocimientos"
+      "conceptos"
     );
 
     const { matchedCount, modifiedCount } =

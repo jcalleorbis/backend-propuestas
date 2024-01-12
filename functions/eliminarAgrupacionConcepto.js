@@ -54,7 +54,7 @@ const validate = async (request) => {
 
   const collectionConceptos = context.functions.execute(
     "getCollectionInstance",
-    "conocimientos"
+    "conceptos"
   );
 
   const tiposEnUso = await collectionConceptos

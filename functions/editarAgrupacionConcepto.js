@@ -94,7 +94,7 @@ const validate = async (request, collection) => {
 const updateManyConceptos = async (tipoId, tipoUpdated) => {
   const collectionConceptos = context.functions.execute(
     "getCollectionInstance",
-    "conocimientos"
+    "conceptos"
   );
   const collectionPostulantes = context.functions.execute(
     "getCollectionInstance",

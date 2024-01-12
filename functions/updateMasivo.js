@@ -14,7 +14,7 @@ exports = async function(request, response){
     const conocimientos = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
-        .collection('conocimientos');
+        .collection('conceptos');
     for (let i = 0; i < postulantes.length; i++) {
           const element = postulantes[i];
           if (element.skills) {
@@ -545,7 +545,7 @@ exports = async function(request, response){
         const options = {
             "upsert": false
         };
-        const { matchedCount, modifiedCount } = await db.collection("conocimientos").updateOne({
+        const { matchedCount, modifiedCount } = await db.collection("conceptos").updateOne({
             _id: BSON.ObjectId(`${conocimiento._id}`)
         }, {$set: conocimientos[i]}, options);
     }  

@@ -70,7 +70,7 @@ exports = async function(request, response/*,body*/){
             let collectionConocimientos = context.services
               .get('mongodb-atlas')
               .db(context.environment.values.DB_NAME)
-              .collection('conocimientos');
+              .collection('conceptos');
             let { insertedId } = await collectionConocimientos.insertOne({nombre: skill[0]});
             if(!insertedId) {
               throw new Error ('No se pudo crear la conocimiento');
