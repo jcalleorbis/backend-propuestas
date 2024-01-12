@@ -276,8 +276,8 @@
     },
     {
         "http_method": "DELETE",
-        "route": "/mantenimiento/conocimientos",
-        "function_name": "eliminarConocimiento",
+        "route": "/mantenimiento/conceptos",
+        "function_name": "eliminarConcepto",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,

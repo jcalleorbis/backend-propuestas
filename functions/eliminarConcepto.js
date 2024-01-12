@@ -11,16 +11,16 @@ exports = async function (request, response) {
       response
     );
 
-    const { conocimientoId } = validate(request);
+    const { conceptoId } = validate(request);
 
-    const collectionConocimientos = context.functions.execute(
+    const collectionConceptos = context.functions.execute(
       "getCollectionInstance",
       "conceptos"
     );
 
     const { matchedCount, modifiedCount } =
-      await collectionConocimientos.updateOne(
-        { _id: conocimientoId },
+      await collectionConceptos.updateOne(
+        { _id: conceptoId },
         {
           $set: {
             deleted: true,
@@ -29,12 +29,12 @@ exports = async function (request, response) {
       );
 
     if (!matchedCount && modifiedCount == 0)
-      throw new Error("No se pudo eliminar el conocimiento seleccionado");
+      throw new Error("No se pudo eliminar el concepto seleccionado");
 
     await deleteManySkillsInPostulantes({ 
-      query: { 'skills.conocimiento._id': conocimientoId },
+      query: { 'skills.conocimiento._id': conceptoId },
       value: { 'skills': {
-          'conocimiento._id': conocimientoId
+          'conocimiento._id': conceptoId
         }
       }
     })
@@ -54,11 +54,11 @@ exports = async function (request, response) {
 const validate = (request) => {
   const params = { ...request.query };
 
-  if (!params.conocimientoId)
+  if (!params.conceptoId)
     throw new Error("El id del documento es requerido");
 
   return {
-    conocimientoId: BSON.ObjectId(params.conocimientoId),
+    conceptoId: BSON.ObjectId(params.conceptoId),
   };
 };
 
