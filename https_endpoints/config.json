@@ -727,8 +727,8 @@
     },
     {
         "http_method": "POST",
-        "route": "/postulantes/file",
-        "function_name": "registrarFilePostulante",
+        "route": "/propuestas/file",
+        "function_name": "registrarFilePropuesta",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,

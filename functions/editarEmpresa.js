@@ -51,6 +51,8 @@ const validate = async (request) => {
       descripcionCorta: body.descripcionCorta || '',
       beneficios: body.beneficios || '',
       website: body.website || '',
+      drive: body.drive || '',
+      estructura_drive: body.estructura_drive || '',
       redes: body.redes || {},
       modificadoPor: sessionUser?._id,
       fechaModificacion: moment().toDate(),

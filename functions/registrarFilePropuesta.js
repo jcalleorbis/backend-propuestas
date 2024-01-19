@@ -1,5 +1,5 @@
 exports = async function(request, response) {
-  const moment = require('moment-timezone');
+  
   try {
     await context.functions.execute("middlewareVerificarOrigenClientId", request, response)
     const { query, headers, body } = request
@@ -7,7 +7,7 @@ exports = async function(request, response) {
     const contentType = validateContentType(headers);
     const data = validateQueries(query);
 
-    const { folder, postulanteId, removerActual, basePath, collectionName, queryUpdate } = data
+    const { type, propuestaId, basePath, collectionName, queryUpdate } = data
 
     const collectionPostulantes = context.functions.execute(
       "getCollectionInstance",
@@ -16,14 +16,17 @@ exports = async function(request, response) {
 
     const postulante = await collectionPostulantes.findOne(queryUpdate)
 
+    const folderId = postulante.folders.find((item)=> item.name == 'reserved_files_propuesta').id;
+
     if (!postulante) 
       context.functions.execute('handleError', "not_found", "El postulante no existe", 404);
 
-    const today = moment().format('YYYY_MM_DD_HH_mm_ss');
-    const nombreCompleto = `${postulante.nombres || ''} ${postulante.apellidoPaterno || ''} ${postulante.apellidoMaterno || ''}`.trim()
-    const filename = `${basePath}${postulante._id}/${folder}/${nombreCompleto.replace(/ /g, '_')}_${today}`;
+    const filename = `${basePath}${type}_${postulante._id}${query.extension}`;
     
-    const fileStr = await context.functions.execute('gcpUploadFileStorage', filename, contentType, body.text());
+    const driveToken = query.token;
+    
+    const fileStr = await context.functions.execute('subirArchivoDrive', body.text(), filename, contentType, folderId, driveToken);
+
     
     const collectionUsuarios = context.functions.execute(
       "getCollectionInstance",
@@ -32,7 +35,7 @@ exports = async function(request, response) {
 
     const update = {
       $set: {
-        [folder]: fileStr
+        [type]: `https://drive.google.com/file/d/${fileStr.data.id}`
       }
     };
 
@@ -50,15 +53,11 @@ exports = async function(request, response) {
     // Se actualizan los datos del postulante en las colecciones "propuestas", "postulante-empresa" y "usuario.candidato"
     await collectionPostulantesEmpresa.updateMany({ postulante: queryUpdate._id || queryUpdate.postulante }, update, options);
     await collectionPostulantesOriginal.updateOne({ _id: queryUpdate._id || queryUpdate.postulante }, update, options);
-    await collectionUsuarios.updateOne({ "sincronizadoCon.identificador": BSON.ObjectId(postulanteId), deleted: { $ne: true }  }, {
+    await collectionUsuarios.updateOne({ "sincronizadoCon.identificador": BSON.ObjectId(propuestaId), deleted: { $ne: true }  }, {
       $set: {
-        [`candidato.${folder}`]: fileStr
+        [`candidato.${type}`]: fileStr
       }
     });
-
-    if(removerActual && postulante[folder]) {
-      await context.functions.execute("gcpRemoveFileStorage", postulante[folder])
-    }
 
     const postulanteActualizado = await collectionPostulantes.findOne(queryUpdate)
 
@@ -71,30 +70,20 @@ exports = async function(request, response) {
 
 const validateContentType = (headers) => {
   const contentType = headers["Content-Type"];
-  if(contentType[0] !== "application/pdf" && contentType[0] !== "video/mp4") {
-    context.functions.execute('handleError', "validation_error", `No se soporta el tipo de archivo ${contentType[0]}`, 400);
-  }
   return contentType[0];
 };
 
-const validateQueries = ({postulanteId, folder, removerActual = false, empresaId = '' }) => {
-  if (!postulanteId) context.functions.execute('handleError', "validation_error", "El ID es requerido", 400);
-  if (!folder) context.functions.execute('handleError', "validation_error", "Se debe especificar la carpeta de destino", 400);
+const validateQueries = ({propuestaId, type}) => {
+  if (!propuestaId) context.functions.execute('handleError', "validation_error", "El ID es requerido", 400);
+  if (!type) context.functions.execute('handleError', "validation_error", "Se debe especificar el tipo", 400);
 
-  const collectionName = empresaId ? 'postulante-empresa' : 'propuestas'
+  const collectionName = 'propuestas'
   
   let queryUpdate = {
-    _id: BSON.ObjectId(postulanteId)
-  }
-
-  if(empresaId) {
-    queryUpdate = {
-      empresa: BSON.ObjectId(empresaId),
-      postulante: BSON.ObjectId(postulanteId)
-    }
+    _id: BSON.ObjectId(propuestaId)
   }
 
   const basePath = '' /*En caso de que se desee segmentar por empresas empresaId ? `empresas/${empresaId}/postulantes/` : '' */
 
-  return {postulanteId, folder, removerActual: removerActual || false, empresaId, collectionName, queryUpdate, basePath };
+  return {propuestaId, type, collectionName, queryUpdate, basePath };
 };

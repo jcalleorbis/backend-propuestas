@@ -628,7 +628,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "registrarFilePostulante",
+        "name": "registrarFilePropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -848,6 +848,18 @@
     },
     {
         "name": "obtenerPostulantePorId",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "crearCarpetaDrive",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "subirArchivoDrive",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
