@@ -64,6 +64,8 @@ exports = async function (request, response) {
       }
     }
 
+    if(propuesta.empresa) parseBody.empresa = propuesta.empresa
+
     // Historial de cambios
     const { fechaActualizacion, historialCambios } = getHistorialCambios(headers, propuesta, parseBody)
 
@@ -81,48 +83,7 @@ exports = async function (request, response) {
     const { matchedCount, modifiedCount } =
       await collectionPropuestas.updateOne(queryUpdate, update, options);
 
-    if (parseBody.empresa) {
-      // Actualiza el candidato si está registrado en otras empresas, menos la actual
-      await collectionPropuestas.updateMany(
-        {
-          propuesta: queryUpdate.propuesta,
-          empresa: { $ne: queryUpdate.empresa },
-        },
-        {
-          $set: formatearDataActualizacion(parseBody),
-        },
-        options
-      );
-      const collectionPropuestasOriginal = context.functions.execute(
-        "getCollectionInstance",
-        "propuestas"
-      );
-      await collectionPropuestasOriginal.updateOne(
-        {
-          _id: queryUpdate.propuesta,
-        },
-        {
-          $set: formatearDataActualizacion(parseBody),
-          $push: { historialCambios: historialCambios[historialCambios.length-1]  }
-        },
-        options
-      );
-    } else {
-      // Actualiza la data de todas las empresas que tengan al candidato
-      const collectionPostulanteEmpresa = context.functions.execute(
-        "getCollectionInstance",
-        "postulante-empresa"
-      );
-      await collectionPostulanteEmpresa.updateMany(
-        {
-          postulante: queryUpdate._id,
-        },
-        {
-          $set: formatearDataActualizacion(parseBody),
-        },
-        options
-      );
-    }
+
 
     // Se valida el resultado
     if (!matchedCount && !modifiedCount) {
@@ -165,12 +126,6 @@ const getHistorialCambios = (headers, propuesta) => {
     },
   };
 
-  if(userSession.empresa) {
-    nuevaEdicion.empresa =  {
-      descripcion: userSession.empresaDoc?.nombre,
-      id: userSession.empresaDoc?._id,
-    }
-  }
 
   const historialCambios = propuesta?.historialCambios
     ? [...propuesta.historialCambios, nuevaEdicion]
