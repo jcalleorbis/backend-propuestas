@@ -1,4 +1,5 @@
 {
+    "from_secret": false,
     "name": "recapp_config",
     "value": {
         "code_verification_length": 6,
@@ -15,6 +16,5 @@
         "tipo_registro_candidato": "candidato",
         "tipo_registro_default": "pre-candidato",
         "tipo_registro_empresa": "empresa"
-    },
-    "from_secret": false
+    }
 }

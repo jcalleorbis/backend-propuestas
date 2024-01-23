@@ -1,10 +1,10 @@
 {
+    "from_secret": false,
     "name": "jwt_config",
     "value": {
         "headerUser": "sessionUser",
         "iat": 300,
         "secret": "the_super_secret_oauth",
         "tokenPayloadKey": "keyUsuario"
-    },
-    "from_secret": false
+    }
 }

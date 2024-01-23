@@ -1,0 +1,9 @@
+{
+    "app_id": "comercial-fco-wycbf",
+    "config_version": 20210101,
+    "name": "comercial-fco",
+    "location": "BR-SP",
+    "provider_region": "aws-sa-east-1",
+    "deployment_model": "LOCAL",
+    "environment": "development"
+}

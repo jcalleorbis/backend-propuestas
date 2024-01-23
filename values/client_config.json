@@ -1,14 +1,14 @@
 {
+    "from_secret": false,
     "name": "client_config",
     "value": {
         "clientId": "a5906aecfc7187b289a4593a5540bf6927b2a746",
         "origins": [
-          "https://orbiscom.orbisdata.pe",
-          "http://orbiscom.orbisdata.pe",
-          "https://orbisdata.pe",
-          "http://orbisdata.pe",
-          "http://localhost:5173"
+            "https://orbiscom.orbisdata.pe",
+            "http://orbiscom.orbisdata.pe",
+            "https://orbisdata.pe",
+            "http://orbisdata.pe",
+            "http://localhost:5173"
         ]
-      },
-    "from_secret": false
+    }
 }

@@ -18,12 +18,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "obtenerAgrupacionesConcepto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "generarCodigoEdicionPostulante",
         "private": false,
         "run_as_system": true,
@@ -54,12 +48,6 @@
     },
     {
         "name": "crearFiltroNombreCompleto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "crearConcepto",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -267,12 +255,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "crearAgrupacionConcepto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "obtenerOfertaEmpleoPorSku",
         "private": false,
         "run_as_system": true,
@@ -332,12 +314,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "eliminarConcepto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "obtenerTecnologiaPorId",
         "private": false,
         "disable_arg_logs": true
@@ -368,18 +344,6 @@
     },
     {
         "name": "validarCodigoVerificacionUsuario",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "editarPropuesta",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "crearPropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -467,12 +431,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "eliminarAgrupacionConcepto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "formatearPostulanteEmpresa",
         "private": false,
         "run_as_system": true,
@@ -515,12 +473,6 @@
     },
     {
         "name": "obtenerEntrevistaPorCodigoAutorizacion",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "buscarPropuestas",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -628,12 +580,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "registrarFilePropuesta",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "obtenerPostulantePorCodigoInvitacion",
         "private": false,
         "run_as_system": true,
@@ -710,12 +656,6 @@
         "disable_arg_logs": true
     },
     {
-        "name": "obtenerSiguienteCodigoPropuesta",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "editarPermiso",
         "private": false,
         "run_as_system": true,
@@ -729,12 +669,6 @@
     },
     {
         "name": "registrarComentarioPostulantes",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "obtenerEstadosPropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -800,19 +734,7 @@
         "disable_arg_logs": true
     },
     {
-        "name": "validarPropuesta",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
         "name": "findPostulantePorId",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "editarAgrupacionConcepto",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -824,18 +746,6 @@
     },
     {
         "name": "obtenerConocimientoPorNombre",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "editarConcepto",
-        "private": false,
-        "run_as_system": true,
-        "disable_arg_logs": true
-    },
-    {
-        "name": "obtenerConceptos",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true
@@ -853,6 +763,90 @@
         "disable_arg_logs": true
     },
     {
+        "name": "obtenerEstadosPropuesta",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "crearPropuesta",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "obtenerSiguienteCodigoPropuesta",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "validarPropuesta",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "editarPropuesta",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "buscarPropuestas",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "obtenerAgrupacionesConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "crearAgrupacionConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "editarAgrupacionConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "eliminarAgrupacionConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "obtenerConceptos",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "crearConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "editarConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "eliminarConcepto",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
         "name": "crearCarpetaDrive",
         "private": false,
         "run_as_system": true,
@@ -860,6 +854,12 @@
     },
     {
         "name": "subirArchivoDrive",
+        "private": false,
+        "run_as_system": true,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "registrarFilePropuesta",
         "private": false,
         "run_as_system": true,
         "disable_arg_logs": true

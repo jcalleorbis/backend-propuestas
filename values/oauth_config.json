@@ -1,10 +1,10 @@
 {
+    "from_secret": false,
     "name": "oauth_config",
     "value": {
         "client_id": "305189906371-e09dlj5ig0omhjpjs4ndhnsvgr92vpbh.apps.googleusercontent.com",
         "client_secret": "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",
         "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCS54zSqv2cLkiP\n7mZ0zLYG0RFtd3eyxdDfHwDrL2IURsugxeZaP3IuNJqqWADdjxMXtyMo8YCPwAXc\nl4r1HNPIGbEmn+5qZ3btvilfBRzvhbPLVqxVLUQRqMrdLEjAwRndt+wzc+lIZRMW\n3DAdG47RSJSFJaHx0iHtnNSbCKTnNy9bhQfb/u2Ps2YwXCgDBr7ge2Xusshq2zp1\nBnKCVujxct9NVXGbh7Pcica4vMo4q2wnAvks8vwIVLV7HnVngL4dl4d46iEel2SS\ngY2qVwV3Q++IOHPtUKeQaTCwOf+zCeFes42dae7MFj1reiBb6l5GBpPRkNBMIC2Z\nYl8XfifJAgMBAAECggEARz/68ypvutJP608rbjbjikbYdwlcit6awbzdyzO+FCuK\nE74oTVk8XeCxqzDnqo38KqJucStAuXfe3/C4Os3ygbjETQGAtybbbc+vbSCjuiBU\n5ahyCRXdT9tYGRGjb6m4i+rqqsHrQWuUaJ/+zf9Rs3vKXRG1i/3o6sAH9fGpWWKU\nbnxTL74uXC7rDCW76eYQaj6o2z50HysE/wSnsLcmLNI1M+FKaRQvo3fcM8FAyNbP\nt4HUfhnn6vXzv4Jgrnqr8gAkfgKo85A9xbMSCIRP2oG7u8PZqDdtDUaPBN20mx1s\n+zU1kFH5Akt/hyecKnLTdJMBuOKJFvRmXPfl8spTqQKBgQDG7J7lSnFipukqHoG+\nnXacmBN2gd74jSW2JV4wEsUmv8wOxuijkhcHVHUTHv0a02icw+X4W8WG6Tk6uw8u\n/dHuUMRXD8Ob0cHUisV+gH6Cl3yBFRdwWCyDblTI8fu8QooA4vT0BFAeQRBh5ucX\nEFdR3iViY+LzyazBC2TjuuOfswKBgQC9DfkEE3udKA0B4UxXU6ri5X713nTxTwil\nwB/KCSI0l1pJXVBrsj6GW+rjec/BnNX7W9H1EztsORszMB68pxc38nvt+zS8b2As\nxmD448pdnEJAOX+3R59CItsj0k6+8mRU+CSWfjiFdntAgg1pgZNa86zCk3Md4Pmf\neer3e3a8kwKBgQCPq3QzfGmZ65z5O6FPb2CsRrW/4JqOfzrea+yz4cqcaufRQF3j\nTW7ub1RDJB1/k3K5zk646mcmQimAPnv/33gQnCrCCnOnhX5tqHBtJha48PoOLJKK\nJFS59CSuIP9Ef/Y2H7T0zGyk/S781ozOvpGiYkQz5JqUonLv1e/e/irKOwKBgCEC\ndo9ao4POQW8pmn3I8xaJAcEGZZ7YsObYA/Tv4VQTdUVIEMmtJrOpCvtLApaIvugT\noTZMdFyyH+ixJzzDZA91vGPSL+QTAlTvEnGCvIvZw8uY/o7O56TRlzfK+crnYdNg\nPGs2gMH07RJXYuYgJM2FrI2Q11HJPWy2CevKV/IXAoGAHEUA2HltE2gW7fTl2iGB\nDI0XPxCF2I+o2AIxcDGVtLjJlpswLP1L4VdHZ8K/3oDIB6YTsDpbTZ7vCkzsxFk6\nxsQ/j4CyZBmxeYDTTDsdSF2+iFDR0eh0SGwGsxS58FM9ERsKh4SxQSwfFqAdkCGN\n+f+pqE22ZAb8s34qqBFvBPc=\n-----END PRIVATE KEY-----\n",
         "refresh_token": "1//04ReQeBDG5fPJCgYIARAAGAQSNwF-L9IrQMLQro8y6XNSWpjXpM0MsAizdoWiYHtQ-kc-UVeoO4CWM1AS1XmtPAL4uZEJd9LZU1M"
-    },
-    "from_secret": false
+    }
 }
