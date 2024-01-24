@@ -199,7 +199,7 @@ function nombreCompleto(filterSearch) {
   if (arrSearch.length === 1) {
     arrSearch.forEach((searchData) => {
       arrMatch.push({
-        nombres: { $regex: searchData, $options: "i" },
+        nombre: { $regex: searchData, $options: "i" },
       });
       arrMatch.push({
         apellidoPaterno: { $regex: searchData, $options: "i" },
@@ -213,12 +213,12 @@ function nombreCompleto(filterSearch) {
   // cuando tiene 2 palabras
   if (arrSearch.length === 2) {
     arrMatch.push({
-      nombres: { $regex: arrSearch.join(" "), $options: "i" },
+      nombre: { $regex: arrSearch.join(" "), $options: "i" },
     });
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: arrSearch[0], $options: "i" },
+          nombre: { $regex: arrSearch[0], $options: "i" },
         },
         {
           apellidoPaterno: { $regex: arrSearch[1], $options: "i" },
@@ -238,7 +238,7 @@ function nombreCompleto(filterSearch) {
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: arrSearch[0], $options: "i" },
+          nombre: { $regex: arrSearch[0], $options: "i" },
         },
         {
           apellidoMaterno: { $regex: arrSearch[1], $options: "i" },
@@ -250,12 +250,12 @@ function nombreCompleto(filterSearch) {
   // cuando tiene 3 palabras
   if (arrSearch.length === 3) {
     arrMatch.push({
-      nombres: { $regex: arrSearch.join(" "), $options: "i" },
+      nombre: { $regex: arrSearch.join(" "), $options: "i" },
     });
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: arrSearch[0], $options: "i" },
+          nombre: { $regex: arrSearch[0], $options: "i" },
         },
         {
           apellidoPaterno: { $regex: arrSearch[1], $options: "i" },
@@ -268,7 +268,7 @@ function nombreCompleto(filterSearch) {
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: arrSearch[1], $options: "i" },
+          nombre: { $regex: arrSearch[1], $options: "i" },
         },
         {
           apellidoPaterno: { $regex: arrSearch[0], $options: "i" },
@@ -281,7 +281,7 @@ function nombreCompleto(filterSearch) {
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: arrSearch[2], $options: "i" },
+          nombre: { $regex: arrSearch[2], $options: "i" },
         },
         {
           apellidoPaterno: { $regex: arrSearch[1], $options: "i" },
@@ -295,12 +295,12 @@ function nombreCompleto(filterSearch) {
   // cuando tiene 4 palabras
   if (arrSearch.length === 4) {
     arrMatch.push({
-      nombres: { $regex: arrSearch.join(" "), $options: "i" },
+      nombre: { $regex: arrSearch.join(" "), $options: "i" },
     });
     arrMatch.push({
       $and: [
         {
-          nombres: { $regex: `${arrSearch[0]} ${arrSearch[1]}`, $options: "i" },
+          nombre: { $regex: `${arrSearch[0]} ${arrSearch[1]}`, $options: "i" },
         },
         {
           apellidoPaterno: { $regex: arrSearch[2], $options: "i" },
