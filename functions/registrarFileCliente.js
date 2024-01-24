@@ -11,7 +11,7 @@ exports = async function (request, response) {
         response
       );
   
-      const { clienteId, buffer } = validate(request);
+      const { clienteId, buffer, format } = validate(request);
   
       const collectionClientes = context.functions.execute(
         "getCollectionInstance",
@@ -23,6 +23,7 @@ exports = async function (request, response) {
         {
           $set: {
             logo: BSON.Binary(0, buffer),
+            format: format
           },
         }
       );
