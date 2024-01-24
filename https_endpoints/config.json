@@ -1102,7 +1102,7 @@
     {
         "http_method": "POST",
         "route": "/clientes/files",
-        "function_name": "eliminarCliente",
+        "function_name": "registrarFileCliente",
         "validation_method": "NO_VALIDATION",
         "respond_result": false,
         "fetch_custom_user_data": false,
