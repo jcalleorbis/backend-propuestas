@@ -59,7 +59,7 @@ exports = async function (request, response) {
     return {
         clienteId: params.clienteId,
         format: base64[0],
-        buffer: base64[1]
+        buffer: body
     };
   };
   
