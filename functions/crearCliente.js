@@ -27,7 +27,10 @@ exports = async function (request, response){
     if(!body.nombre) throw new Error("El nombre es requerido")
     if(!body.pais) throw new Error("El pais es requerido")
     if(!body.contrapartes) throw new Error("Las contrapartes son requeridas")
-  
+
+    const jwtConfig = context.values.get("jwt_config")
+    const sessionUser = request.headers?.[jwtConfig.headerUser]
+    
     return {
       nombre: body.nombre || "",
       pais: body.pais,
