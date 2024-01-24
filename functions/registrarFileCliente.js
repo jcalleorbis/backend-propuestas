@@ -22,7 +22,7 @@ exports = async function (request, response) {
         { _id: BSON.ObjectId(clienteId) },
         {
           $set: {
-            logo: BSON.Binary(0, buffer),
+            logo: Binary.fromText(buffer),
             format: format
           },
         }
