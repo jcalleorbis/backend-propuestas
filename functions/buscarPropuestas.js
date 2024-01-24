@@ -195,7 +195,7 @@ function nombreCompleto(filterSearch) {
   // cuando tiene 1 palabra
   arrSearch.forEach((searchData) => {
     arrMatch.push({
-      nombre: { $regex: searchData, $options: "i" },
+      nombre_propuesta: { $regex: searchData, $options: "i" },
     });
     arrMatch.push({
       "cliente.nombre": { $regex: searchData, $options: "i" },
