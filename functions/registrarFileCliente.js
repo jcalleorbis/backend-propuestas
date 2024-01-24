@@ -29,9 +29,11 @@ exports = async function (request, response) {
   
       if (!modifiedCount)
         throw new Error("No se pudo eliminar el Cliente seleccionado");
+
+        const clientDocument = await collectionClientes.findOne({ _id: clienteId })
   
       context.functions.execute("handlerResponse", response, {
-        deleted: Boolean(modifiedCount)
+        data: clientDocument
       });
     } catch (err) {
       context.functions.execute(
