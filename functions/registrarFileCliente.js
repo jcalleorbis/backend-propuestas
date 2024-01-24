@@ -22,7 +22,7 @@ exports = async function (request, response) {
         { _id: BSON.ObjectId(clienteId) },
         {
           $set: {
-            logo: buffer,
+            logo: BinData(0, buffer),
           },
         }
       );
@@ -49,14 +49,14 @@ exports = async function (request, response) {
   
   const validate = (request) => {
     const params = { ...request.query };
-    const body = JSON.parse(request.body.text())
+    const body = request.body.text()
   
     if (!params.clienteId) throw new Error("El id del cliente es requerido");
-    if (!body.buffer) throw new Error("El buffer es requerido");
+    if (!body) throw new Error("El buffer es requerido");
   
     return {
         clienteId: params.clienteId,
-        buffer: body.buffer
+        buffer: body
     };
   };
   
