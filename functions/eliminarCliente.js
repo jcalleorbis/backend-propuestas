@@ -31,9 +31,7 @@ exports = async function (request, response) {
         throw new Error("No se pudo eliminar el Cliente seleccionado");
   
       context.functions.execute("handlerResponse", response, {
-        deleted: Boolean(modifiedCount),
-        usuarios,
-        ofertasEmpresa,
+        deleted: Boolean(modifiedCount)
       });
     } catch (err) {
       context.functions.execute(
