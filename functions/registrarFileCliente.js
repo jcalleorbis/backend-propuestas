@@ -22,8 +22,7 @@ exports = async function (request, response) {
         { _id: BSON.ObjectId(clienteId) },
         {
           $set: {
-            logo: BSON.Binary.fromText(buffer),
-            format: format
+            logo: buffer
           },
         }
       );
@@ -58,7 +57,6 @@ exports = async function (request, response) {
   
     return {
         clienteId: params.clienteId,
-        format: base64[0],
         buffer: body
     };
   };
