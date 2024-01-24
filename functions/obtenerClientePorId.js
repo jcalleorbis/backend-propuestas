@@ -15,17 +15,17 @@ exports = async function (request, response) {
   
       if (!query.clienteId) throw new Error("El id es requerido");
   
-      const collectionEmpresas = context.functions.execute(
+      const collectionClientes = context.functions.execute(
         "getCollectionInstance",
         "clientes"
       );
   
-      const cliente = await collectionEmpresas.findOne({
+      const cliente = await collectionClientes.findOne({
         _id: BSON.ObjectId(query.clienteId),
         deleted: { $ne: true },
       });
   
-      context.functions.execute("handlerResponse", response, empresa);
+      context.functions.execute("handlerResponse", response, cliente);
     } catch (err) {
       context.functions.execute(
         "handlerResponse",
