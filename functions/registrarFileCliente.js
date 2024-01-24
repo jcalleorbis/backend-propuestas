@@ -49,14 +49,16 @@ exports = async function (request, response) {
   
   const validate = (request) => {
     const params = { ...request.query };
-    const body = request.body.text()
+    const body = request.body.text();
+    const base64 = body.split(',');
   
     if (!params.clienteId) throw new Error("El id del cliente es requerido");
     if (!body) throw new Error("El buffer es requerido");
   
     return {
         clienteId: params.clienteId,
-        buffer: body
+        format: base64[0],
+        buffer: base64[1]
     };
   };
   
