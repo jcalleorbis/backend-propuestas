@@ -217,6 +217,7 @@ function validate({
   salario,
   ciudad,
   creadorId,
+  cliente
 }) {
   const parsePage = parseInt(page);
   const parseLimit = parseInt(limit);
@@ -236,5 +237,6 @@ function validate({
     salario,
     ciudad,
     creadorId,
+    cliente
   };
 }
