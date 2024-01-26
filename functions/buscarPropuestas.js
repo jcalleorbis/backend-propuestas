@@ -125,6 +125,11 @@ exports = async function (request, response) {
         "pais._id": BSON.ObjectId(data.pais),
       });
     }
+    if (data.cliente) {
+      find.$match.$and.push({
+        "cliente._id": BSON.ObjectId(data.cliente),
+      });
+    }
     const tieneCV =
       data.tieneCV === "true" ? true : data.tieneCV === "false" ? false : "";
     if (tieneCV === true) {
