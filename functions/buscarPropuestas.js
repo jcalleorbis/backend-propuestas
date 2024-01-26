@@ -127,7 +127,7 @@ exports = async function (request, response) {
     }
     if (data.cliente) {
       find.$match.$and.push({
-        "cliente._id": BSON.ObjectId(data.cliente),
+        "cliente._id": data.cliente,
       });
     }
     const tieneCV =
