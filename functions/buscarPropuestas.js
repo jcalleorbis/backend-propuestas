@@ -190,18 +190,14 @@ exports = async function (request, response) {
 };
 
 function nombreCompleto(filterSearch) {
-  const arrSearch = filterSearch.split(" ");
-  const arrMatch = [];
-  // cuando tiene 1 palabra
-  arrSearch.forEach((searchData) => {
-    arrMatch.push({
-      nombre_propuesta: { $regex: searchData, $options: "i" },
-    });
-    arrMatch.push({
-      "cliente.nombre": { $regex: searchData, $options: "i" },
-    });
-  });
-  return arrMatch;
+  return [
+    {
+      nombre_propuesta: { $regex: filterSearch, $options: "i" },
+    },
+    {
+      "cliente.nombre": { $regex: filterSearch, $options: "i" },
+    }
+  ];
 }
 
 function validate({
