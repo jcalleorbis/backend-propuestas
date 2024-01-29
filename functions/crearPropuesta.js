@@ -77,22 +77,25 @@ exports = async function (request, response) {
     const enterpriseFound = await collectionEnterprises.findOne(queryEnterprise);
 
     //
-    if(enterpriseFound.drive && enterpriseFound.estructura_drive){
+    if(enterpriseFound.drive && enterpriseFound.carpetas_drive){
       //Get the google drive token
       //Get the main folderId
       const mainFolderId = enterpriseFound.drive.split('?')[0].split('/').pop();
       //Create the new folder
       const createdFolder = await context.functions.execute("crearCarpetaDrive", [`${propuesta._id}_${propuesta.alias}`], mainFolderId, driveToken);
       if(createdFolder.status !== 401){
-        const folders = enterpriseFound.estructura_drive.split('\n');
-        folders.push("reserved_files_propuesta")
+        
+        const folders = enterpriseFound.carpetas_drive.map((item)=> {
+          return item.nombre;
+        });
 
         const driveResponse = await context.functions.execute("crearCarpetaDrive", folders, createdFolder.data[0].id, driveToken);
         
         const foldersSaved = driveResponse.data.map((item)=>{
           return {
             id: item.id,
-            name: item.folderName
+            name: item.folderName,
+            updateFiles: enterpriseFound.carpetas_drive.find((item)=> item.nombre == item.folderName).isFileUploaded
           }
         });
 

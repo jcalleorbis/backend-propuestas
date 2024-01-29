@@ -16,7 +16,7 @@ exports = async function(request, response) {
 
     const postulante = await collectionPostulantes.findOne(queryUpdate)
 
-    const folderId = postulante.folders.find((item)=> item.name == 'reserved_files_propuesta').id;
+    const folderId = postulante.folders.find((item)=> item.updateFiles == true).id;
 
     if (!postulante) 
       context.functions.execute('handleError', "not_found", "El postulante no existe", 404);
