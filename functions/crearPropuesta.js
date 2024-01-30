@@ -91,7 +91,7 @@ exports = async function (request, response) {
           return item.nombre;
         });
 
-        if(createFolders) folders = folders.filter((item)=>item.isFileUploaded == true)
+        if(!createFolders) folders = folders.filter((item)=>item.isFileUploaded == true)
 
         const driveResponse = await context.functions.execute("crearCarpetaDrive", folders, createdFolder.data[0].id, driveToken);
         
