@@ -79,7 +79,7 @@ exports = async function (request, response) {
     const enterpriseFound = await collectionEnterprises.findOne(queryEnterprise);
 
     //
-    if(createFolders && enterpriseFound.drive && enterpriseFound.carpetas_drive){
+    if(enterpriseFound.drive && enterpriseFound.carpetas_drive){
       //Get the google drive token
       //Get the main folderId
       const mainFolderId = enterpriseFound.drive.split('?')[0].split('/').pop();
@@ -87,9 +87,11 @@ exports = async function (request, response) {
       const createdFolder = await context.functions.execute("crearCarpetaDrive", [`${propuesta._id}_${propuesta.alias}`], mainFolderId, driveToken);
       if(createdFolder.status !== 401){
         
-        const folders = enterpriseFound.carpetas_drive.map((item)=> {
+        let folders = enterpriseFound.carpetas_drive.map((item)=> {
           return item.nombre;
         });
+
+        if(createFolders) folders = folders.filter((item)=>item.isFileUploaded == true)
 
         const driveResponse = await context.functions.execute("crearCarpetaDrive", folders, createdFolder.data[0].id, driveToken);
         
