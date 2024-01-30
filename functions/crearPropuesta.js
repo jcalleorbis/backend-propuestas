@@ -79,7 +79,7 @@ exports = async function (request, response) {
     const enterpriseFound = await collectionEnterprises.findOne(queryEnterprise);
 
     //
-    if(enterpriseFound.drive && enterpriseFound.carpetas_drive && createFolders){
+    if(createFolders && enterpriseFound.drive && enterpriseFound.carpetas_drive){
       //Get the google drive token
       //Get the main folderId
       const mainFolderId = enterpriseFound.drive.split('?')[0].split('/').pop();
