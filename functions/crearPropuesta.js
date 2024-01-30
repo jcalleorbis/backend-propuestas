@@ -91,7 +91,7 @@ exports = async function (request, response) {
           return item.nombre;
         });
 
-        if(!createFolders) folders = folders.filter((item)=>item.isFileUploaded == true)
+        if(!createFolders) folders = enterpriseFound.carpetas_drive.filter((item)=>item.isFileUploaded == true).map((item)=>{return item.nombre});
 
         const driveResponse = await context.functions.execute("crearCarpetaDrive", folders, createdFolder.data[0].id, driveToken);
         
@@ -99,7 +99,7 @@ exports = async function (request, response) {
           return {
             id: item.id,
             name: item.folderName,
-            updateFiles: enterpriseFound.carpetas_drive.find((item)=> item.nombre == item.folderName).isFileUploaded
+            updateFiles: enterpriseFound.carpetas_drive.find((current)=> current.nombre == item.folderName).isFileUploaded
           }
         });
 
