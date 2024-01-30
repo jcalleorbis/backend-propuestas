@@ -34,21 +34,6 @@ exports = function(data, hideValidate = false){
         if(!hideValidate)
             throw new Error("El país es obligatorio");
     }
-    if (data.nombre_cliente) {
-        data.nombre_cliente = data.nombre_cliente.toString();
-    } else {
-        if(!hideValidate)
-            throw new Error("El nombre del cliente es obligatorio");
-    }
-    if (data.nombre_contraparte) {
-        data.nombre_contraparte = data.nombre_contraparte.toString();
-    }
-    if (data.correo_contraparte) {
-        data.correo_contraparte = data.correo_contraparte.toString();
-    }
-    if (data.telefono) {
-        data.telefono = data.telefono.toString();
-    }
     if (data.observaciones) {
         data.observaciones = data.observaciones.toString();
     }

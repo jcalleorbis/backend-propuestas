@@ -21,6 +21,8 @@ exports = async function (request, response) {
       "validarPropuesta",
       JSON.parse(body.text())
     );
+
+    const createFolders = parseBody.createFolders;
     
     const collectionPropuestas = context.functions.execute(
       "getCollectionInstance",
@@ -77,7 +79,7 @@ exports = async function (request, response) {
     const enterpriseFound = await collectionEnterprises.findOne(queryEnterprise);
 
     //
-    if(enterpriseFound.drive && enterpriseFound.carpetas_drive){
+    if(enterpriseFound.drive && enterpriseFound.carpetas_drive && createFolders){
       //Get the google drive token
       //Get the main folderId
       const mainFolderId = enterpriseFound.drive.split('?')[0].split('/').pop();
