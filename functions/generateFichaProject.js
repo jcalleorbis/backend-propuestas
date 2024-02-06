@@ -16,7 +16,7 @@ exports = async function(request, response){
         .collection('propuestas');
   
         let query = {
-            _id: BSON.ObjectId(data._id),
+            _id: BSON.ObjectId(data.propuesta_id),
         }
         
         const propuesta = await collectionPostulantes.findOne(query);
