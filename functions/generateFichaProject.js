@@ -100,7 +100,8 @@ exports = async function(request, response){
             filename,
             folderId,
             base64,
-            ficha_project_request
+            ficha_project_request,
+            buffer: `application/vnd.openxmlformats-officedocument.wordprocessingml.document,${base64}`
         });
     } catch (err) {
       if(err.message === "eliminado") {
