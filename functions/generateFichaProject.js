@@ -94,15 +94,8 @@ exports = async function(request, response){
         const driveToken = data.token;
         
         const fileStr = await context.functions.execute('subirArchivoDrive', `base64,${base64}`, filename, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', folderId, driveToken);
-
-        context.functions.execute('handlerResponse', response, {
-            drive: fileStr,
-            filename,
-            folderId,
-            base64,
-            ficha_project_request,
-            buffer: `application/vnd.openxmlformats-officedocument.wordprocessingml.document,${base64}`
-        });
+        const url_file = `https://docs.google.com/document/d/${fileStr.data.id}`
+        context.functions.execute('handlerResponse', response, url_file);
     } catch (err) {
       if(err.message === "eliminado") {
         context.functions.execute('handlerResponse', response, null, 404, false, null);
