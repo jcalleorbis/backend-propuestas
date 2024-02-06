@@ -6,7 +6,7 @@ exports = async function(request, response){
         // middleware validación token
         await context.functions.execute("middlewareVerificarToken", headers, response)
     
-        const data = validate({...body});
+        const data = validate(request.body);
 
         //Primero obtener la propuesta
 
