@@ -100,7 +100,8 @@ exports = async function(request, response){
             drive: fileStr,
             filename,
             folderId,
-            base64
+            base64,
+            ficha_project_request
         });
     } catch (err) {
       if(err.message === "eliminado") {
