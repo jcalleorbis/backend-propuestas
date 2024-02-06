@@ -82,7 +82,7 @@ exports = async function(request, response){
         
         //Generate word base64
         const responsebase64 = await context.http.post({
-            url: "jobkip.com/orbiscom/generate_ficha_project",
+            url: "https://jobkip.com/orbiscom/generate_ficha_project",
             ficha_project_request,
             encodeBodyAsJSON: true
           });
