@@ -26,7 +26,7 @@ exports = async function(request, response){
         const collectionEmpresas = context.services
         .get('mongodb-atlas')
         .db(context.environment.values.DB_NAME)
-        .collection('propuestas');
+        .collection('empresas');
 
         query = {
             _id: propuesta.empresa,
