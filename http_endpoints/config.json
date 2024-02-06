@@ -1109,5 +1109,16 @@
         "create_user_on_auth": false,
         "disabled": false,
         "return_type": "JSON"
+    },
+    {
+        "http_method": "POST",
+        "route": "/propuestas/generate-ficha-project",
+        "function_name": "generateFichaProject",
+        "validation_method": "NO_VALIDATION",
+        "respond_result": false,
+        "fetch_custom_user_data": false,
+        "create_user_on_auth": false,
+        "disabled": false,
+        "return_type": "JSON"
     }
 ]
