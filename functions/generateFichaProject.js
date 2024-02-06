@@ -96,7 +96,12 @@ exports = async function(request, response){
         
         const fileStr = await context.functions.execute('subirArchivoDrive', `application/vnd.openxmlformats-officedocument.wordprocessingml.document,${base64}`, filename, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', folderId, driveToken);
 
-        context.functions.execute('handlerResponse', response, fileStr);
+        context.functions.execute('handlerResponse', response, {
+            drive: fileStr,
+            filename,
+            folderId,
+            base64
+        });
     } catch (err) {
       if(err.message === "eliminado") {
         context.functions.execute('handlerResponse', response, null, 404, false, null);
