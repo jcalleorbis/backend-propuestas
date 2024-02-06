@@ -64,7 +64,7 @@ exports = async function(request, response){
             },
             "nombre_propuesta": propuesta.nombre_propuesta,
             "observaciones": propuesta.observaciones,
-            "desafios": propuesta.desafios_cliente,
+            "desafio": propuesta.desafios_cliente,
             "objetivos": propuesta.objetivos.map((item)=>{
                 return {
                     "name": item.objetivo
