@@ -56,7 +56,7 @@ exports = async function(request, response){
                 "phone": "",
                 "web": empresa.website,
                 "email": empresa.email,
-                "logo": empresa.logo?`https://storage.googleapis.com/recapp-dev/${empresa.logo}`:''
+                "logo": empresa.logo?`https://storage.googleapis.com/recapp-dev${empresa.logo}`:''
             },
             "cliente": {
                 "nombre": cliente.nombre,
