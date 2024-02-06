@@ -81,12 +81,12 @@ exports = async function(request, response){
         }
         
         //Generate word base64
-        const response = await context.http.post({
+        const responsebase64 = await context.http.post({
             url: "jobkip.com/orbiscom/generate_ficha_project",
             ficha_project_request,
             encodeBodyAsJSON: true
           });
-        const base64 = response.body.text();
+        const base64 = responsebase64.body.text();
 
         //Upload file to google drive
         const folderId = propuesta.folders.find((item)=> item.updateFiles == true).id;
