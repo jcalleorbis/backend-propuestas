@@ -79,11 +79,10 @@ exports = async function(request, response){
             }),
             "testimonio": propuesta.testimonios_cliente[0]
         }
-        
         //Generate word base64
         const responsebase64 = await context.http.post({
             url: "https://jobkip.com/orbiscom/generate_ficha_project",
-            ficha_project_request,
+            body: ficha_project_request,
             encodeBodyAsJSON: true
           });
         const base64 = responsebase64.body.text();
