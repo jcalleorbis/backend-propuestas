@@ -93,7 +93,7 @@ exports = async function(request, response){
     
         const driveToken = data.token;
         
-        const fileStr = await context.functions.execute('subirArchivoDrive', `application/vnd.openxmlformats-officedocument.wordprocessingml.document,${base64}`, filename, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', folderId, driveToken);
+        const fileStr = await context.functions.execute('subirArchivoDrive', `base64,${base64}`, filename, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', folderId, driveToken);
 
         context.functions.execute('handlerResponse', response, {
             drive: fileStr,
