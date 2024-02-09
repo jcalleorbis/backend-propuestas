@@ -74,10 +74,14 @@ exports = async function(request, response){
             "beneficios": propuesta.beneficios.map((item)=>{
                 return {
                     "beneficio": item.beneficio,
-                    "percent": Number(item.porcentaje)
+                    "percent": String(item.porcentaje)
                 }
             }),
-            "testimonio": propuesta.testimonios_cliente[0]
+            "testimonio": propuesta.testimonios_cliente[0],
+            "include": {
+                "logo_empresa": empresa.logo?"1": "0",
+                "logo_cliente": cliente.logo?"1": "0"
+            }
         }
         //Generate word base64
         const responsebase64 = await context.http.post({
