@@ -54,33 +54,36 @@ exports = async function(request, response){
         const ficha_project_request = {
             "empresa": {
                 "phone": "",
-                "web": empresa.website,
-                "email": empresa.email,
+                "web": empresa.website || "",
+                "email": empresa.email || "",
                 "logo": empresa.logo?`https://storage.googleapis.com/recapp-dev${empresa.logo}`:''
             },
             "cliente": {
-                "nombre": cliente.nombre,
-                "logo": cliente.logo||""
+                "nombre": cliente.nombre || "",
+                "logo": cliente.logo|| ""
             },
-            "nombre_propuesta": propuesta.nombre_propuesta,
-            "observaciones": propuesta.observaciones,
-            "desafio": propuesta.desafios_cliente,
-            "objetivos": propuesta.objetivos.map((item)=>{
+            "nombre_propuesta": propuesta.nombre_propuesta || "",
+            "observaciones": propuesta.observaciones || "",
+            "desafio": propuesta.desafios_cliente || "",
+            "objetivos": propuesta.objetivos?propuesta.objetivos.map((item)=>{
                 return {
                     "name": item.objetivo
                 }
-            }),
-            "solution": propuesta.solucion_cliente,
-            "beneficios": propuesta.beneficios.map((item)=>{
+            }): "",
+            "solution": propuesta.solucion_cliente || "",
+            "beneficios": propuesta.beneficios?propuesta.beneficios.map((item)=>{
                 return {
                     "beneficio": item.beneficio,
                     "percent": String(item.porcentaje)
                 }
-            }),
-            "testimonio": propuesta.testimonios_cliente[0],
+            }): "",
+            "testimonio": propuesta.testimonios_cliente?propuesta.testimonios_cliente[0]: "",
             "include": {
                 "logo_empresa": empresa.logo?"1": "0",
-                "logo_cliente": cliente.logo?"1": "0"
+                "logo_cliente": cliente.logo?"1": "0",
+                "testimonio": propuesta.testimonios_cliente?"1": "0",
+                "objetivos": propuesta.objetivos?"1": "0",
+                "beneficios": propuesta.beneficios?"1": "0"
             }
         }
         //Generate word base64
