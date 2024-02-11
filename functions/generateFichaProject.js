@@ -51,6 +51,32 @@ exports = async function(request, response){
         
         //Crear json para envio al servicio de creación de propuestas
 
+        let include = {
+            "logo_empresa": empresa.logo?true: false,
+            "logo_cliente": cliente.logo?true: false,
+            "testimonio": propuesta.testimonios_cliente && Array.isArray(propuesta.testimonios_cliente) && propuesta.testimonios_cliente.length > 0?true: false,
+            "objetivos": propuesta.objetivos && Array.isArray(propuesta.objetivos) && propuesta.objetivos.length > 0?true: false,
+            "beneficios": propuesta.beneficios && Array.isArray(propuesta.beneficios) && propuesta.beneficios.length > 0?true: false
+        }
+
+        if(empresa.ficha){
+            include = {
+                "logo_empresa": include.logo_empresa && empresa.ficha.logo_empresa,
+                "logo_cliente": include.logo_cliente && empresa.ficha.logo_cliente,
+                "testimonio": include.testimonio && empresa.ficha.testimonio,
+                "objetivos": include.objetivos && empresa.ficha.objetivos_cliente,
+                "beneficios": include.beneficios && empresa.ficha.beneficios_proyecto
+            }
+        }
+
+        include = {
+            "logo_empresa": include.logo_empresa == true?"1": "0",
+            "logo_cliente": include.logo_cliente == true?"1": "0",
+            "testimonio": include.testimonio == true?"1": "0",
+            "objetivos": include.objetivos == true?"1": "0",
+            "beneficios": include.beneficios == true?"1": "0",
+        }
+
         const ficha_project_request = {
             "empresa": {
                 "phone": "",
@@ -78,13 +104,7 @@ exports = async function(request, response){
                 }
             }): "",
             "testimonio": propuesta.testimonios_cliente && Array.isArray(propuesta.testimonios_cliente) && propuesta.testimonios_cliente.length > 0?propuesta.testimonios_cliente[0]: "",
-            "include": {
-                "logo_empresa": empresa.logo?"1": "0",
-                "logo_cliente": cliente.logo?"1": "0",
-                "testimonio": propuesta.testimonios_cliente && Array.isArray(propuesta.testimonios_cliente) && propuesta.testimonios_cliente.length > 0?"1": "0",
-                "objetivos": propuesta.objetivos && Array.isArray(propuesta.objetivos) && propuesta.objetivos.length > 0?"1": "0",
-                "beneficios": propuesta.beneficios && Array.isArray(propuesta.beneficios) && propuesta.beneficios.length > 0?"1": "0"
-            }
+            "include": include
         }
         //Generate word base64
         const responsebase64 = await context.http.post({
