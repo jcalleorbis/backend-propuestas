@@ -65,25 +65,25 @@ exports = async function(request, response){
             "nombre_propuesta": propuesta.nombre_propuesta || "",
             "observaciones": propuesta.observaciones || "",
             "desafio": propuesta.desafios_cliente || "",
-            "objetivos": propuesta.objetivos?propuesta.objetivos.map((item)=>{
+            "objetivos": propuesta.objetivos && Array.isArray(propuesta.objetivos) && propuesta.objetivos.length > 0?propuesta.objetivos.map((item)=>{
                 return {
                     "name": item.objetivo
                 }
             }): "",
             "solution": propuesta.solucion_cliente || "",
-            "beneficios": propuesta.beneficios?propuesta.beneficios.map((item)=>{
+            "beneficios": propuesta.beneficios && Array.isArray(propuesta.beneficios) && propuesta.beneficios.length > 0?propuesta.beneficios.map((item)=>{
                 return {
                     "beneficio": item.beneficio,
                     "percent": String(item.porcentaje)
                 }
             }): "",
-            "testimonio": propuesta.testimonios_cliente?propuesta.testimonios_cliente[0]: "",
+            "testimonio": propuesta.testimonios_cliente && Array.isArray(propuesta.testimonios_cliente) && propuesta.testimonios_cliente.length > 0?propuesta.testimonios_cliente[0]: "",
             "include": {
                 "logo_empresa": empresa.logo?"1": "0",
                 "logo_cliente": cliente.logo?"1": "0",
-                "testimonio": propuesta.testimonios_cliente?"1": "0",
-                "objetivos": propuesta.objetivos?"1": "0",
-                "beneficios": propuesta.beneficios?"1": "0"
+                "testimonio": propuesta.testimonios_cliente && Array.isArray(propuesta.testimonios_cliente) && propuesta.testimonios_cliente.length > 0?"1": "0",
+                "objetivos": propuesta.objetivos && Array.isArray(propuesta.objetivos) && propuesta.objetivos.length > 0?"1": "0",
+                "beneficios": propuesta.beneficios && Array.isArray(propuesta.beneficios) && propuesta.beneficios.length > 0?"1": "0"
             }
         }
         //Generate word base64
