@@ -56,6 +56,8 @@ exports = async function (request, response) {
     };
     
     
+    find.$match.$and[0].$or = find.$match.$and[0].$or.concat(arrMatch);
+    
     if(filterSearch.length == 24){
       find.$match.$and[0].$or = find.$match.$and[0].$or.concat({
                 "_id": { $eq: BSON.ObjectId(filterSearch) },
