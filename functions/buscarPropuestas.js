@@ -41,6 +41,9 @@ exports = async function (request, response) {
                 },
               },
               {
+                "_id": { $regex: BSON.ObjectId(filterSearch), $options: "i" },
+              },
+              {
                 telefono: { $regex: filterSearch, $options: "i" },
               },
               {
