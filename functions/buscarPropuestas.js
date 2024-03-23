@@ -41,9 +41,6 @@ exports = async function (request, response) {
                 },
               },
               {
-                "_id": { $eq: BSON.ObjectId(filterSearch) },
-              },
-              {
                 telefono: { $regex: filterSearch, $options: "i" },
               },
               {
@@ -57,7 +54,13 @@ exports = async function (request, response) {
         ],
       },
     };
-    find.$match.$and[0].$or = find.$match.$and[0].$or.concat(arrMatch);
+    
+    
+    if(filterSearch.length == 24){
+      find.$match.$and[0].$or = find.$match.$and[0].$or.concat({
+                "_id": { $eq: BSON.ObjectId(filterSearch) },
+              });
+    }
 
     if (data.creadorId) {
       // filtro de creador
